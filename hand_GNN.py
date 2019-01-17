@@ -678,20 +678,15 @@ rand = np.random.RandomState(SEED)
 
 # Model parameters.
 num_processing_steps_tr = 2
-num_processing_steps_ge = 1
-
 # Data / training parameters.
-
 batch_size_tr = 256
-batch_size_ge = 100
-num_time_steps = 50
-step_size = 0.1
-num_masses_min_max_tr = (5, 9)
-dist_between_masses_min_max_tr = (0.2, 1.0)
-
+dataset_fn = './saved/graph.dat'
+restore_file = './saved'+'/model.pickle'
+graph_num = 436529
 datasetid = int(sys.argv[1])
 num_training_iterations = int(sys.argv[2])
 learning_rate = float(sys.argv[3])#1e-5
+Disturbance = True
 # Create the model.
 model = models.EncodeProcessDecode(node_output_size=3)
 
@@ -704,9 +699,9 @@ bone = [[0 ,1 ,1 ,2 ,3 ,3 ,4 ,5 ,5 ,6 ,7 ,7 ,8 ,9 ,9 ,10,10,11,12,13,13,13,13,13
 bone_self = [[0,1,2,3,4,5,6,7,8,9,10,11,12,13],#"receivers"
              [0,1,2,3,4,5,6,7,8,9,10,11,12,13]]#"senders"
 
-fn = '/home/cjy/GNN_demo/saved/graph.dat'
-with open(fn, 'rb') as f:
-    for i in range(436529):
+
+with open(dataset_fn, 'rb') as f:
+    for i in range(graph_num):
         pose = pickle.load(f)
         if i >= datasetid*batch_size_tr and i<(datasetid+1)*batch_size_tr:
             where_are_nan = np.isnan(pose.nodes_pt)
@@ -720,14 +715,15 @@ with open(fn, 'rb') as f:
             nodes_gt_norm = nodes_gt_norm / np.sqrt(np.sum(np.square(nodes_gt_norm[7, :])))
 
             #chen nodes_pt Disturbance
-            joint_mask = np.ones((14,1))
-            dis_num = random.randint(0, 2)
-            for dis_num_i in range(dis_num):
-                disid = random.randint(0, 13)
-                joint_mask[disid,:] = [0.0]
-                nodes_pt_norm[disid,:] = [0.0,0.0,0.0]
-            nodes_pt_norm = np.concatenate((joint_mask,nodes_pt_norm),axis = 1)
-            nodes_pt_norm = nodes_pt_norm.astype(np.float32)
+            if Disturbance:
+                joint_mask = np.ones((14,1))
+                dis_num = random.randint(0, 2)
+                for dis_num_i in range(dis_num):
+                    disid = random.randint(0, 13)
+                    joint_mask[disid,:] = [0.0]
+                    nodes_pt_norm[disid,:] = [0.0,0.0,0.0]
+                nodes_pt_norm = np.concatenate((joint_mask,nodes_pt_norm),axis = 1)
+                nodes_pt_norm = nodes_pt_norm.astype(np.float32)
             graph_tr.append({
                 "globals": [1.0,-1.0],
                 "nodes": nodes_pt_norm,
@@ -750,14 +746,29 @@ graph_gt = utils_tf.data_dicts_to_graphs_tuple(graph_gt)
 output_ops_tr = model(graph_tr, num_processing_steps_tr)
 
 # Training loss.
-loss_ops_tr = create_loss_ops(graph_gt, graph_tr, output_ops_tr)
+#loss_ops_tr = create_loss_ops(graph_gt, graph_tr, output_ops_tr)
+if Disturbance:
+    loss_ops_tr = [
+        tf.reduce_mean(
+            tf.reduce_sum((graph_tr.nodes[:, 1:4] + output_op.nodes - graph_gt.nodes) ** 2, axis=-1))
+        for output_op in output_ops_tr
+    ]
+else:
+    loss_ops_tr = [
+        tf.reduce_mean(
+            tf.reduce_sum((graph_tr.nodes + output_op.nodes - graph_gt.nodes) ** 2, axis=-1))
+        for output_op in output_ops_tr
+    ]
 # Training loss across processing steps.
 loss_op_tr = sum(loss_ops_tr) / num_processing_steps_tr
 
 # Training loss.
 graph_tr_list = []
 graph_tr_list.append(graph_tr)
-loss_ops_base = tf.reduce_sum((graph_gt.nodes - graph_tr.nodes[:,1:4]) ** 2, axis=-1)
+if Disturbance:
+    loss_ops_base = tf.reduce_sum((graph_gt.nodes - graph_tr.nodes[:,1:4]) ** 2, axis=-1)
+else:
+    loss_ops_base = tf.reduce_sum((graph_gt.nodes - graph_tr.nodes) ** 2, axis=-1)
 loss_ops_base = tf.reduce_mean(loss_ops_base)
 
 # Test/generalization loss: 4-mass.
@@ -780,8 +791,11 @@ try:
   sess.close()
 except NameError:
   pass
-sess = tf.Session()
-restore_file = '/home/cjy/GNN_demo/saved'+'/model.pickle'
+
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.2 # 占用GPU20%的显存
+sess = tf.Session(config=config)
+
 #train_writer = tf.summary.FileWriter('/home/chen/Documents/GNN_demo/saved',sess.graph)
 if os.path.exists(restore_file):
     restore_model(sess, restore_file)
@@ -838,7 +852,7 @@ print("dataset:" + str(datasetid) +":" + str(train_values["loss"])+": vs :" + st
 #  if (iteration % 1) == 0:
 save_model(sess,restore_file)
 print('saved %d model' % last_iteration)
-print(learning_rate )
+print(learning_rate)
 # image_num = random.randint(0, batch_size_tr)
 # input_graph_1 = train_values["input_graph"][0].nodes[image_num * 14: (image_num + 1) * 14,:]
 # target_nodes_1 = train_values["target_nodes"][0].nodes[image_num*14:(image_num+1)*14,:]

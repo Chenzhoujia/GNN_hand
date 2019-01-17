@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62103a3b-9959-40bd-b077-3b42f9a5a251" name="Default" comment="" />
+    <list default="true" id="62103a3b-9959-40bd-b077-3b42f9a5a251" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/saved/events.out.tfevents.1546874289.chen-ThinkStation-D30" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved/model.pickle" afterPath="$PROJECT_DIR$/saved/model.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hand_GNN.py" afterPath="$PROJECT_DIR$/hand_GNN.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +17,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/GNN_demo$load.coverage" NAME="load Coverage Results" MODIFIED="1547370785969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/GNN_demo$hand_GNN_.coverage" NAME="hand_GNN  Coverage Results" MODIFIED="1547467179971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/GNN_demo$hand_GNN_.coverage" NAME="hand_GNN  Coverage Results" MODIFIED="1547694230209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -19,8 +25,8 @@
       <file leaf-file-name="hand_GNN.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hand_GNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1607">
-              <caret line="759" column="39" lean-forward="false" selection-start-line="759" selection-start-column="31" selection-end-line="759" selection-end-column="39" />
+            <state relative-caret-position="284">
+              <caret line="795" column="66" lean-forward="false" selection-start-line="795" selection-start-column="66" selection-end-line="795" selection-end-column="66" />
               <folding>
                 <element signature="e#295#333#0" expanded="true" />
                 <element signature="e#14080#24330#0" expanded="false" />
@@ -42,16 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>26</find>
-      <find>bone_self</find>
-      <find>num_processing_steps_ge</find>
-      <find>num_processing_steps_tr</find>
-      <find>nodes_pt</find>
-      <find>LATENT_SIZE</find>
-      <find>NUM_LAYERS</find>
-      <find>train_writer</find>
-      <find>create_loss_ops</find>
-      <find>input_graph</find>
       <find>loss_op_base</find>
       <find>loss_op_tr</find>
       <find>with</find>
@@ -63,7 +59,6 @@
       <find>dataset_id</find>
       <find>graphs.GraphTuple</find>
       <find>last_iteration</find>
-      <find>batch_size_tr</find>
       <find>num_training_iterations</find>
       <find>print</find>
       <find>merged</find>
@@ -72,6 +67,17 @@
       <find>chen</find>
       <find>cjy</find>
       <find>3</find>
+      <find>batch_size_tr</find>
+      <find>batch_size_ge</find>
+      <find>num_time_steps</find>
+      <find>step_size</find>
+      <find>num_masses_min_max_tr</find>
+      <find>dist_between_masses_min_max_tr</find>
+      <find>num_processing_steps_ge</find>
+      <find>num_processing_steps_tr</find>
+      <find>fn</find>
+      <find>restore_file</find>
+      <find>create_loss_ops</find>
     </findStrings>
     <replaceStrings>
       <replace>base_graph_fun</replace>
@@ -81,6 +87,9 @@
       <replace>bone_self</replace>
       <replace>bone</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -103,11 +112,12 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="670" />
-    <option name="y" value="30" />
+    <option name="x" value="276" />
+    <option name="y" value="642" />
     <option name="width" value="808" />
     <option name="height" value="1018" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -268,7 +278,7 @@
       <module name="GNN_demo" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hand_GNN.py" />
-      <option name="PARAMETERS" value="1 1000 0.001" />
+      <option name="PARAMETERS" value="1 10 0.001" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
@@ -475,20 +485,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="670" y="30" width="808" height="1018" extended-state="0" />
+    <frame x="276" y="642" width="808" height="1018" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5144737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43673012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28843996" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18253079" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20772442" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -535,16 +545,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hand_GNN.py</url>
-          <line>340</line>
-          <option name="timeStamp" value="53" />
+          <line>768</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hand_GNN.py</url>
-          <line>759</line>
-          <option name="timeStamp" value="75" />
+          <line>753</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="77" />
+      <option name="time" value="78" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -857,8 +867,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hand_GNN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1607">
-          <caret line="759" column="39" lean-forward="false" selection-start-line="759" selection-start-column="31" selection-end-line="759" selection-end-column="39" />
+        <state relative-caret-position="284">
+          <caret line="795" column="66" lean-forward="false" selection-start-line="795" selection-start-column="66" selection-end-line="795" selection-end-column="66" />
           <folding>
             <element signature="e#295#333#0" expanded="true" />
             <element signature="e#14080#24330#0" expanded="false" />
