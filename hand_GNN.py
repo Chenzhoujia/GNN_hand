@@ -677,16 +677,16 @@ tf.reset_default_graph()
 rand = np.random.RandomState(SEED)
 
 # Model parameters.
-num_processing_steps_tr = 2
+num_processing_steps_tr = 6
 # Data / training parameters.
-batch_size_tr = 256
-dataset_fn = './saved/graph.dat'
-restore_file = './saved'+'/model.pickle'
+batch_size_tr = 512
+dataset_fn = '/home/cjy/GNN_demo/saved/graph.dat'
+restore_file = '/home/cjy/GNN_demo/saved'+'/model.pickle'
 graph_num = 436529
 datasetid = int(sys.argv[1])
 num_training_iterations = int(sys.argv[2])
 learning_rate = float(sys.argv[3])#1e-5
-Disturbance = True
+Disturbance = False
 # Create the model.
 model = models.EncodeProcessDecode(node_output_size=3)
 
